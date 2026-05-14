@@ -1,7 +1,7 @@
 # BREADTH-FIRST-SEARCH
 <h1>ExpNo 3 : Implement Breadth First Search Traversal of a Graph</h1> 
-<h3>Name:  </h3>
-<h3>Register Number: </h3>
+<h3>Name: POOJA P </h3>
+<h3>Register Number: 212224100041 </h3>
 <H3>Aim:</H3>
 <p>To Implement Breadth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -19,37 +19,66 @@ Let us understand the working of the algorithm with the help of the following ex
 Step1: Initially queue and visited arrays are empty.
 </p>
 
+
+
 ![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/8acdebf8-ecc2-4d10-a208-45cce441f059)
+
+
 
 
 Queue and visited arrays are empty initially.
 Step2: Push node 0 into queue and mark it visited.
 
+
+
 ![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/0e9ce012-8e1f-43d7-b7b9-c0fb19fe0c3f)
+
+
 
 
 Push node 0 into queue and mark it visited.
 Step 3: Remove node 0 from the front of queue and visit the unvisited neighbours and push them into queue.
 
+
+
 ![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/67d8fa3b-ce9e-46c2-9dd7-089e204e667a)
+
+
 
 Step 4: Remove node 1 from the front of queue and visit the unvisited neighbours and push them into queue.
 
+
+
 ![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/b0cf0fde-8a86-41cb-a054-36875ac24ab0)
+
+
 
 Step 5: Remove node 2 from the front of queue and visit the unvisited neighbours and push them into queue.
 
+
+
+
 ![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/8968a163-6b3a-4f7e-8ad4-bbf24f326b9b)
+
+
 
 Step 6: Remove node 3 from the front of queue and visit the unvisited neighbours and push them into queue. 
 As we can see that every neighbours of node 3 is visited, so move to the next node that are in the front of the queue.
 
+
+
 ![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/7a1c1b16-ea69-497f-a099-8440200f6dc0)
+
+
 
 Steps 7: Remove node 4 from the front of queue and visit the unvisited neighbours and push them into queue. 
 As we can see that every neighbours of node 4 are visited, so move to the next node that is in the front of the queue.
 
+
+
 ![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/8e16ffa3-c3d6-4774-822b-6eb84adedad9)
+
+
 
 Remove node 4 from the front of queue and visit the unvisited neighbours and push them into queue.
 Now, Queue becomes empty, So, terminate these process of iteration.
@@ -101,7 +130,60 @@ G F <BR>
 <hr>
 <h3>Sample Output</h3>
 <hr>
-['0', '1', '2', '3', '4']
+['0', '1', '2', '3', '4']<hr>
+
+## Program :
+
+```
+from collections import deque
+from collections import defaultdict
+'''
+Input format:
+V E
+U V for each edge
+Example:
+7 9
+A B
+A C
+A F
+C E
+C F
+C D
+D E
+D G
+G F
+'''
+def bfs(graph, start, visited, path):
+    queue = deque()
+    path.append(start)
+    queue.append(start)
+    visited[start] = True
+    while len(queue) != 0:
+        tmpnode = queue.popleft()
+        # Visit all unvisited neighbors
+        for neighbour in graph[tmpnode]:
+            if not visited[neighbour]:
+                visited[neighbour] = True
+                queue.append(neighbour)
+                path.append(neighbour)
+    return path
+print("Enter number of vertices and edges (e.g., '7 9'):")
+graph = defaultdict(list)
+v, e = map(int, input().split())
+print("enter edges u v")
+for i in range(e):
+    u, v = input().split()
+    graph[u].append(v)
+    graph[v].append(u)  # assuming undirected graph
+start = input("Enter start node: ")
+path = []
+visited = defaultdict(bool)
+traversedpath = bfs(graph, start, visited, path)
+print("BFS Traversal Path:", traversedpath)
+```
+## Output : 
+<img width="522" height="227" alt="image" src="https://github.com/user-attachments/assets/28e5891f-8eb5-491d-9617-ac2c01a8afd3" />
+
 <hr>
 <h3>Result:</h3>
 <hr>
